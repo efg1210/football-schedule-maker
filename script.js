@@ -3,12 +3,25 @@
 
 var finalMessage = "";
 var weekNumber = 1;
-var teams = ["Lions", "Cowboys", "Eagles", "Giants", "Rams", "Seahawks", "49ers", "Saints", "Falcons", "Buccaneers", "Ravens", "Steelers", "Patriots", "Jets", "Cheifs", "Broncos", "Titans", "Jaguars"];
+var footballTeams = ["Lions", "Cowboys", "Eagles", "Giants", "Rams", "Seahawks", "49ers", "Saints", "Falcons", "Buccaneers", "Ravens", "Steelers", "Patriots", "Jets", "Cheifs", "Broncos", "Titans", "Jaguars"];
+var baseballTeams = ["Yankees", "Red Sox", "Athletics", "Rangers", "Royals", "Rays", "Cardinals", "Dodgers", "Rockies", "Phillies", "Marlins", "Brewers"];
 var shuffledTeams = [];
-teams.forEach(function(element){
-  shuffledTeams.push(element);
-});
-shuffledTeams = shuffledTeams.sort(function(a, b){return 0.5 - Math.random()});
+
+function baseball(){
+  baseballTeams.forEach(function(element){
+    shuffledTeams.push(element);
+  });
+  shuffledTeams = shuffledTeams.sort(function(a, b){return 0.5 - Math.random()});
+  start();
+}
+
+function football(){
+  footballTeams.forEach(function(element){
+    shuffledTeams.push(element);
+  });
+  shuffledTeams = shuffledTeams.sort(function(a, b){return 0.5 - Math.random()});
+  start();
+}
 
 function start(){
   finalMessage = "";
@@ -56,9 +69,9 @@ function circleShift(weeks){
   }
 
   //creating output message
-  for (var i = 0; i < (weeksOrHalf(weeks)-1)/2; i++) {
+  for (var i = 0; i < Math.floor(weeksOrHalf(weeks)/2); i++) {
     console.log(weeksOrHalf(weeks));
-    console.log((weeksOrHalf(weeks)-1)/2);
+    console.log(Math.floor(weeksOrHalf(weeks)/2));
     output += "<b>Week number " + (i+1+(shuffledTeams.length/2)).toString() + "</b><br/>";
 
     //preparing for the message
