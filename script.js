@@ -2,30 +2,46 @@
 //winnie_the_pooh = whoomy_whoomy
 
 var finalMessage = "";
-var weekNumber = 1;
 var footballTeams = ["Lions", "Cowboys", "Eagles", "Giants", "Rams", "Seahawks", "49ers", "Saints", "Falcons", "Buccaneers", "Ravens", "Steelers", "Patriots", "Jets", "Cheifs", "Broncos", "Titans", "Jaguars"];
 var baseballTeams = ["Yankees", "Red Sox", "Athletics", "Rangers", "Royals", "Rays", "Cardinals", "Dodgers", "Rockies", "Phillies", "Marlins", "Brewers"];
 var shuffledTeams = [];
 
+function reset(){
+  finalMessage = "";
+  console.log(shuffledTeams);
+  shuffledTeams = [];
+  console.log(shuffledTeams);
+}
+
 function baseball(){
+  reset();
   baseballTeams.forEach(function(element){
     shuffledTeams.push(element);
   });
   shuffledTeams = shuffledTeams.sort(function(a, b){return 0.5 - Math.random()});
-  start();
+  var weeks = 0;
+  while(weeks > 9 || weeks == 0){
+    weeks = prompt("Number of weeks?");
+  }
+  start(weeks);
 }
 
 function football(){
+  reset();
   footballTeams.forEach(function(element){
     shuffledTeams.push(element);
   });
   shuffledTeams = shuffledTeams.sort(function(a, b){return 0.5 - Math.random()});
-  start();
+  var weeks = 0;
+  while(weeks > 13 || weeks == 0){
+    weeks = prompt("Number of weeks?");
+  }
+  start(weeks);
 }
 
-function start(){
+function start(weeks){
   finalMessage = "";
-  var weeks = prompt("Number of weeks?");
+
   console.log(shuffledTeams);
   oneShift(weeks);
   if(weeks > (shuffledTeams.length/2)){
@@ -69,7 +85,7 @@ function circleShift(weeks){
   }
 
   //creating output message
-  for (var i = 0; i < Math.floor(weeksOrHalf(weeks)/2); i++) {
+  for (var i = 0; i < weeksOrHalf(weeks); i++) {
     console.log(weeksOrHalf(weeks));
     console.log(Math.floor(weeksOrHalf(weeks)/2));
     output += "<b>Week number " + (i+1+(shuffledTeams.length/2)).toString() + "</b><br/>";
@@ -92,3 +108,14 @@ function circleShift(weeks){
   }
   finalMessage += output;
 }
+
+/*
+13 weeks
+9 is half
+4 after half
+
+
+9 weeks
+6 is half
+3 after half
+*/
