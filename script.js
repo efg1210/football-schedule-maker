@@ -27,7 +27,6 @@ function weeksOrHalf(weeks){
 }
 
 function oneShift(weeks){
-  console.log("helo");
   for(var i = 0; i < weeksOrHalf(weeks); i++){
     finalMessage = finalMessage + "<strong>Week number " + (i + 1).toString() + ":</strong> </br>";
     for(var j = 0; j < Math.floor(shuffledTeams.length/2); j++){
@@ -43,16 +42,38 @@ function oneShift(weeks){
 }
 
 function circleShift(weeks){
-  console.log("hi");
-  var array1 = [];
-  var array2 = [];
+  //setting up
+  var arr1 = [];
+  var arr2 = [];
   for(var i = 0; i < shuffledTeams.length; i+=2){
-    array1.push(shuffledTeams[i]);
+    arr1.push(shuffledTeams[i]);
   }
   for(var i = 1; i < shuffledTeams.length; i+=2){
-    array2.push(shuffledTeams[i]);
+    arr2.push(shuffledTeams[i]);
   }
-  console.log(shuffledTeams);
-  console.log(array1);
-  console.log(array2);
+
+  //creating output message
+  var output = "";
+  for (var i = 0; i < weeks; i++) {
+    output += "<b>Week number " + (i+1+(shuffledTeams.length/2)) + "</b><br/>";
+    for (var j = 0; j < arr1.length; j++) {
+      output += arr1[j] + " against " + arr2[j] + "<br/>";
+    }
+
+    //preparing for the message
+    var temp = arr1[0];
+    for(var j = 0; j < ((shuffledTeams.length/2)); j++){
+      arr1[j] = arr1[j+1];
+      console.log(j, "first");
+    }
+    arr1[arr1.length] = arr2[arr1.length];
+    for(var v = arr2.length; v < ((shuffledTeams.length/2)); v--){
+      arr2[v] = arr2[v-1];
+      console.log(v, "second");
+    }
+    arr2[0] = temp;
+
+    //sending output
+    finalMessage += output;
+  }
 }
