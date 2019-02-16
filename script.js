@@ -2,6 +2,7 @@
 //winnie_the_pooh = whoomy_whoomy
 
 var finalMessage = "";
+var weekNumber = 1;
 var teams = ["Lions", "Cowboys", "Eagles", "Giants", "Rams", "Seahawks", "49ers", "Saints", "Falcons", "Buccaneers", "Ravens", "Steelers", "Patriots", "Jets", "Cheifs", "Broncos", "Titans", "Jaguars"];
 var shuffledTeams = [];
 teams.forEach(function(element){
@@ -13,7 +14,7 @@ function start(){
   var weeks = prompt("Number of weeks?");
   oneShift(weeks);
   if(weeks > (shuffledTeams.length/2)){
-    circleShift(weeks - (shuffledTeams.length/2));
+    circleShift((weeks - (shuffledTeams.length/2)));
   }
   document.getElementById("funDiv").innerHTML = finalMessage;
 }
@@ -54,10 +55,11 @@ function circleShift(weeks){
 
   //creating output message
   var output = "";
-  for (var i = 0; i < weeks; i++) {
-    output += "<b>Week number " + (i+1+(shuffledTeams.length/2)) + "</b><br/>";
+  for (var i = 0; i < weeksOrHalf(weeks); i++) {
+    output += "<b>Week number " + (i+1+(shuffledTeams.length/2)).toString() + "</b><br/>";
     for (var j = 0; j < arr1.length; j++) {
       output += arr1[j] + " against " + arr2[j] + "<br/>";
+      console.log(output);
     }
 
     //preparing for the message
@@ -66,10 +68,10 @@ function circleShift(weeks){
       arr1[j] = arr1[j+1];
       console.log(j, "first");
     }
-    arr1[arr1.length] = arr2[arr1.length];
-    for(var v = arr2.length; v < ((shuffledTeams.length/2)); v--){
-      arr2[v] = arr2[v-1];
-      console.log(v, "second");
+    arr1[arr1.length] = arr2[arr2.length];
+    for(var j = (arr2.length - 1); j >= 0; j--){
+      arr2[j] = arr2[j-1];
+      console.log(j, "second");
     }
     arr2[0] = temp;
 
