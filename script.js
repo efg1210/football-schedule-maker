@@ -56,7 +56,9 @@ function circleShift(weeks){
   }
 
   //creating output message
-  for (var i = 0; i < weeksOrHalf(weeks); i++) {
+  for (var i = 0; i < (weeksOrHalf(weeks)-1)/2; i++) {
+    console.log(weeksOrHalf(weeks));
+    console.log((weeksOrHalf(weeks)-1)/2);
     output += "<b>Week number " + (i+1+(shuffledTeams.length/2)).toString() + "</b><br/>";
 
     //preparing for the message
